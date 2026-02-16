@@ -1,60 +1,72 @@
-# Pruebas
+SISTEMA DE TURNOS – PRUEBA TÉCNICA
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
 
-## Development server
+TECNOLOGÍAS UTILIZADAS
+- Angular 19
+- TypeScript
+- HTML / SCSS (Diseño responsive)
+- RxJS
+- LocalStorage
+- API externa: https://jsonplaceholder.typicode.com/users
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
+FUNCIONALIDADES PRINCIPALES
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1) AUTENTICACIÓN (LOGIN)
+- Vista de login como pantalla inicial
+- Formulario reactivo con validaciones (Email y Password)
+- Credenciales configurables en auth.service.ts
+- Redirección automática a /empleados al iniciar sesión
+- Botón de cerrar sesión visible en todas las vistas internas
+- Evita navegar sin sesión activa
 
-## Code scaffolding
+2) LISTADO DE EMPLEADOS
+- Se consumen datos desde la API pública
+- Vista con cards que muestran: nombre, email y botón "Asignar turno"
+- Diseño moderno, profesional, ejecutivoc-casual
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3) ASIGNACIÓN DE TURNOS
+- Formulario con validaciones:
+  * Fecha obligatoria
+  * Hora inicio obligatoria
+  * Hora fin obligatoria
+  * Hora fin mayor que hora inicio
+- Mensaje de éxito al guardar
+- Los turnos se guardan en localStorage
 
-```bash
-ng generate component component-name
-```
+4) PERSISTENCIA
+- Los turnos se guardan en localStorage
+- No se pierden al recargar la página
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+5) RESPONSIVE DESIGN
+- Total adaptabilidad a desktop, tablet y móvil
 
-```bash
-ng generate --help
-```
 
-## Building
+CREDENCIALES DE PRUEBA
+Se pueden modificar en:
+src/app/core/services/auth.service.ts
 
-To build the project run:
+Valores por defecto:
+Email: admin@company.com
+Password: 123456
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+CÓMO EJECUTAR EL PROYECTO
 
-## Running unit tests
+1. Instalar dependencias:
+   npm install
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+2. Ejecutar servidor:
+   ng serve
 
-```bash
-ng test
-```
+3. Abrir en navegador:
+   http://localhost:4200
 
-## Running end-to-end tests
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-"# Sistema-Turnos"  
+FLUJO DE USO
+1. Abrir /login
+2. Iniciar sesión
+3. Redirección a /empleados
+4. Seleccionar empleado
+5. Asignar turno
