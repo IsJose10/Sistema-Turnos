@@ -4,7 +4,7 @@ SISTEMA DE TURNOS – PRUEBA TÉCNICA
 TECNOLOGÍAS UTILIZADAS
 - Angular 19
 - TypeScript
-- HTML / SCSS (Diseño responsive)
+- HTML / CSS (Diseño responsive)
 - RxJS
 - LocalStorage
 - API externa: https://jsonplaceholder.typicode.com/users
