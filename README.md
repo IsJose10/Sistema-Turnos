@@ -23,7 +23,7 @@ FUNCIONALIDADES PRINCIPALES
 2) LISTADO DE EMPLEADOS
 - Se consumen datos desde la API pública
 - Vista con cards que muestran: nombre, email y botón "Asignar turno"
-- Diseño moderno, profesional, ejecutivoc-casual
+- Diseño moderno, profesional
 
 3) ASIGNACIÓN DE TURNOS
 - Formulario con validaciones:
@@ -47,7 +47,7 @@ Se pueden modificar en:
 src/app/core/services/auth.service.ts
 
 Valores por defecto:
-Email: admin@company.com
+Email: admin@test.com
 Password: 123456
 
 
