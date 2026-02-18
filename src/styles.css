@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: #0f0f1a;
+    /* Fondo principal (casi negro) */
+    --color-surface: #1a1a2e;
+    /* Fondo de tarjetas */
+    --color-surface-2: #22223a;
+    /* Fondo de inputs */
+    --color-primary: #6c5ce7;
+    /* Color principal (morado) */
+    --color-primary-light: #a29bfe;
+    --color-primary-dark: #5a4bd1;
+    --color-accent: #00cec9;
+    /* Color de acento (turquesa) */
+    --color-danger: #ff6b6b;
+    /* Color de error (rojo) */
+    --color-danger-light: #ff8787;
+    --color-success: #00b894;
+    /* Color de éxito (verde) */
+    --color-text: #f0f0f5;
+    /* Texto principal (blanco) */
+    --color-text-secondary: #a0a0b8;
+    /* Texto secundario (gris claro) */
+    --color-text-muted: #6c6c80;
+    /* Texto desvanecido (gris) */
+    --color-border: #2d2d44;
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px rgba(108, 92, 231, 0.3);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --transition-fast: 0.15s ease;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}

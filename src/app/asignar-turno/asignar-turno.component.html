@@ -1,0 +1,99 @@
+<div class="asignar-turno-page">
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="btn-back" (click)="volver()">← Volver</button>
+                <div>
+                    <h1>Asignar Turno</h1>
+                    <p class="header-subtitle" *ngIf="empleado">Para: {{ empleado.name }}</p>
+                </div>
+            </div>
+            <button class="btn-logout" (click)="cerrarSesion()">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <!-- Loading -->
+    <div class="loading-container" *ngIf="cargando">
+        <div class="loading-spinner"></div>
+        <p>Cargando datos del empleado...</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content" *ngIf="!cargando && empleado">
+
+        <!-- Info del empleado -->
+        <div class="empleado-info">
+            <div class="empleado-avatar">{{ empleado!.name.charAt(0) }}</div>
+            <div>
+                <h2>{{ empleado!.name }}</h2>
+                <p>{{ empleado!.email }}</p>
+            </div>
+        </div>
+
+        <!-- Formulario (modal-style card) -->
+        <div class="form-card">
+            <div class="form-card-header">
+                <h3>Datos del Turno</h3>
+            </div>
+
+            <!-- Formulario: se oculta cuando guardamos exitosamente -->
+            <form [formGroup]="turnoForm" (ngSubmit)="onSubmit()" *ngIf="!turnoGuardado">
+
+                <!-- Fecha -->
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" formControlName="fecha"
+                        [class.input-error]="turnoForm.get('fecha')?.invalid && turnoForm.get('fecha')?.touched" />
+                    <div class="error-messages"
+                        *ngIf="turnoForm.get('fecha')?.touched && turnoForm.get('fecha')?.invalid">
+                        <span *ngIf="turnoForm.get('fecha')?.errors?.['required']">La fecha es obligatoria.</span>
+                    </div>
+                </div>
+
+                <!-- Hora de Inicio -->
+                <div class="form-group">
+                    <label for="horaInicio">Hora de Inicio</label>
+                    <input type="time" id="horaInicio" formControlName="horaInicio"
+                        [class.input-error]="turnoForm.get('horaInicio')?.invalid && turnoForm.get('horaInicio')?.touched" />
+                    <div class="error-messages"
+                        *ngIf="turnoForm.get('horaInicio')?.touched && turnoForm.get('horaInicio')?.invalid">
+                        <span *ngIf="turnoForm.get('horaInicio')?.errors?.['required']">La hora de inicio es
+                            obligatoria.</span>
+                    </div>
+                </div>
+
+                <!-- Hora de Fin -->
+                <div class="form-group">
+                    <label for="horaFin">Hora de Fin</label>
+                    <input type="time" id="horaFin" formControlName="horaFin" [class.input-error]="(turnoForm.get('horaFin')?.invalid && turnoForm.get('horaFin')?.touched)
+              || (turnoForm.errors?.['horaInvalida'] && turnoForm.get('horaFin')?.touched)" />
+                    <div class="error-messages"
+                        *ngIf="turnoForm.get('horaFin')?.touched && turnoForm.get('horaFin')?.invalid">
+                        <span *ngIf="turnoForm.get('horaFin')?.errors?.['required']">La hora de fin es
+                            obligatoria.</span>
+                    </div>
+                    <!-- Error del VALIDADOR PERSONALIZADO (a nivel de grupo) -->
+                    <div class="error-messages" *ngIf="turnoForm.errors?.['horaInvalida']
+              && turnoForm.get('horaFin')?.touched
+              && turnoForm.get('horaInicio')?.touched">
+                        <span>La hora de fin debe ser mayor a la hora de inicio.</span>
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" (click)="volver()">Cancelar</button>
+                    <button type="submit" class="btn-save">Guardar Turno</button>
+                </div>
+            </form>
+
+            <!-- Mensaje de éxito (aparece al guardar) -->
+            <div class="success-message" *ngIf="turnoGuardado">
+                <h3>¡Turno asignado con éxito!</h3>
+                <p>El turno para <strong>{{ empleado!.name }}</strong> ha sido registrado.</p>
+                <p class="redirect-msg">Redirigiendo a la lista de empleados...</p>
+            </div>
+        </div>
+    </div>
+</div>

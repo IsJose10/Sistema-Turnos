@@ -1,0 +1,63 @@
+<div class="login-page">
+    <div class="login-card">
+        <!-- Encabezado -->
+        <div class="login-header">
+            <h1>Gestor de Turnos</h1>
+            <p>Inicia sesión para continuar</p>
+        </div>
+
+        <!-- [formGroup]="loginForm" conecta este <form> con nuestro FormGroup del .ts -->
+        <!-- (ngSubmit) se dispara al hacer submit -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <!-- Campo Email -->
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <!-- formControlName conecta este input con el campo 'email' del FormGroup -->
+                <input type="email" id="email" formControlName="email" placeholder="admin&#64;test.com"
+                    [class.input-error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" />
+                <!-- Mensajes de error: solo se muestran si el campo fue tocado Y es inválido -->
+                <div class="error-messages" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+                    <span *ngIf="loginForm.get('email')?.errors?.['required']">
+                        El correo es obligatorio.
+                    </span>
+                    <span *ngIf="loginForm.get('email')?.errors?.['email']">
+                        Ingresa un correo con formato válido.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo Password -->
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" formControlName="password" placeholder="••••••"
+                    [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
+                <div class="error-messages"
+                    *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+                    <span *ngIf="loginForm.get('password')?.errors?.['required']">
+                        La contraseña es obligatoria.
+                    </span>
+                    <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                        La contraseña debe tener al menos 6 caracteres.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Mensaje de error general (credenciales incorrectas) -->
+            <div class="error-general" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+
+            <!-- Botón submit -->
+            <button type="submit" class="btn-login">
+                Iniciar Sesión
+            </button>
+        </form>
+
+        <!-- Pista de credenciales -->
+        <div class="login-footer">
+            <p>Credenciales de prueba:</p>
+            <code>admin&#64;test.com / 123456</code>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="empleados-page">
+    <!-- Header con botón de cerrar sesión -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Empleados</h1>
+            <button class="btn-logout" (click)="cerrarSesion()">
+                Cerrar Sesión
+            </button>
+        </div>
+    </header>
+
+    <!-- Mientras carga, mostramos un spinner -->
+    <div class="loading-container" *ngIf="cargando">
+        <div class="loading-spinner"></div>
+        <p>Cargando empleados...</p>
+    </div>
+
+    <!-- Cuando ya cargó, mostramos las tarjetas -->
+    <!--
+    *ngFor = "para cada empleado en el array, crea una tarjeta"
+    Es como un ciclo for pero en el HTML.
+    'let i = index' nos da el número de posición (0, 1, 2...)
+  -->
+    <div class="empleados-grid" *ngIf="!cargando">
+        <div class="empleado-card" *ngFor="let empleado of empleados; let i = index"
+            [style.animation-delay]="i * 0.05 + 's'">
+
+            <!-- Avatar con la primera letra del nombre -->
+            <div class="card-avatar">
+                {{ empleado.name.charAt(0) }}
+            </div>
+
+            <div class="card-info">
+                <h3 class="card-name">{{ empleado.name }}</h3>
+                <p class="card-email">{{ empleado.email }}</p>
+            </div>
+
+            <!-- (click) ejecuta la función al hacer clic -->
+            <button class="btn-asignar" (click)="asignarTurno(empleado.id)">
+                Asignar Turno
+            </button>
+        </div>
+    </div>
+</div>
